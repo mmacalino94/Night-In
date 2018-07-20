@@ -1,1 +1,3 @@
-function joker();
+var college
+
+var major
