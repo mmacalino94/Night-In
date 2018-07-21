@@ -15,3 +15,5 @@
 * **Hardin Ross** - *layout and style* - [heross91] (https://github.com/heross91)
 
 * **Karsten Rabe** - *Github admin* - [krab7191] (https://github.com/krab7191)
+
+* **Lestee Foye** - ** -
