@@ -1,4 +1,4 @@
-var college
+var college = { type:"", size:"", location:""};
 
 var major
 
@@ -9,4 +9,10 @@ var state
 var tuition
 
 
+$(document).ready(function(){
+    $("p").click(function(){
+        $(this).hide();
+    });
+});
 
+<script src="https://code.jquery.com/jquery.js"></script>
