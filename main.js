@@ -9,4 +9,10 @@ var state
 var tuition
 
 
+$(document).ready(function(){
+    $("p").click(function(){
+        $(this).hide();
+    });
+});
+
 
