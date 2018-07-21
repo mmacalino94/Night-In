@@ -1,4 +1,4 @@
-var college
+var college = { type:"", size:"", location:""};
 
 var major
 
@@ -15,4 +15,4 @@ $(document).ready(function(){
     });
 });
 
-
+<script src="https://code.jquery.com/jquery.js"></script>
