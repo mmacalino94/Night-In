@@ -1,0 +1,14 @@
+
+/* Testing map */
+#map-area {
+    margin: 0 auto;
+    height: 500px;
+    width: 650px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+/* End testing map */
