@@ -1,16 +1,7 @@
-var college = { type:"", size:"", location:""};
-
-var major;
-
-var scholarship;
-
-var state;
-
-var tuition;
-
-
-$(document).ready(function(){
-    $("p").click(function(){
-        $(this).hide();
+var map;
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map-area'), {
+        center: { lat: 35.8549538, lng: -78.8406356 },
+        zoom: 8
     });
-});
+}
