@@ -1,4 +1,4 @@
-# College info comparator
+# Night In
 
 ## Built with
 
