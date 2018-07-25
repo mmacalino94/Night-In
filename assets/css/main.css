@@ -1,3 +1,4 @@
+team-style
 *   {
     box-sizing: border-box;
     position: relative;
@@ -15,3 +16,24 @@ body    {
 #food   {
     width: 100%;
 }
+/* Testing map */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map-area {
+    margin: 0 auto;
+    height: 500px;
+    width: 650px;
+}
+
+#location-error {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+}
+/* End testing map */

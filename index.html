@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>College Comparator</title>
+  <title>Night In</title>
     <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
     <!-- Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel='stylesheet' href='assets/css/main.css'>
-    <script src='https://code.jquery.com/jquery.js'></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- Compiled and minified JavaScript -->    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="title" class="container-fluid">
@@ -64,9 +64,12 @@
             </div>
         </div>
     </div>
-   
 
-<script src="https://code.jquery.com/jquery.js"></script>
-<script type="text/javascript" src="main.js"></script>
+    <div id="map-area">
+        Loading map...
+    </div>
+    <script src="assets/js/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCdoZ1np2q1OgYjnjq8OvLg3OwoSX5-Rk&callback=getLocation" async defer></script>
 </body>
+
 </html>
