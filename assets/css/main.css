@@ -1,14 +1,21 @@
-
 /* Testing map */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 #map-area {
     margin: 0 auto;
     height: 500px;
     width: 650px;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+#location-error {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
 }
 /* End testing map */
