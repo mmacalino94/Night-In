@@ -22,7 +22,7 @@ function getLocation() {
 }
 // Handle errors thrown by the geocode API
 function geolocationError(error) {
-    var suff = "Please enter a zip code manually.";
+    var suff = "Please enter a location manually.";
     var message;
     switch (error.code) {
         case error.PERMISSION_DENIED:
