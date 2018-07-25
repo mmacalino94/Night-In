@@ -1,0 +1,17 @@
+*   {
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* #title  {
+    padding: 20px;
+    margin-bottom: 20px;
+} */
+
+body    {
+    background-color: #003366;
+}
+
+#food   {
+    width: 100%;
+}
