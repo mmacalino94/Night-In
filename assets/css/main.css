@@ -25,9 +25,8 @@ html, body {
 }
 
 #map-area {
-    margin: 0 auto;
-    height: 500px;
-    width: 650px;
+    height: 250px;
+    width: 100%;
 }
 
 #location-error {
