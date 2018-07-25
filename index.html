@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel='stylesheet' href='assets/css/main.css'>
-    <!-- Compiled and minified JavaScript -->    
+    <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 </head>
@@ -59,15 +59,14 @@
                 <div class="card-header">Food and Drink Locator!</div>
                 <div class="card-body">
                     <!-- <h5 class="card-title">Secondary card title</h5> -->
-                    <p class="card-text">this is where the food options will be located</p>
+                    <div id="map-area">
+                        Loading map...
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="map-area">
-        Loading map...
-    </div>
     <script src="assets/js/main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCdoZ1np2q1OgYjnjq8OvLg3OwoSX5-Rk&callback=getLocation" async defer></script>
 </body>
