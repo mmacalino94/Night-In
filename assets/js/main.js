@@ -22,7 +22,7 @@ function getLocation() {
 }
 // Handle errors thrown by the geocode API
 function geolocationError(error) {
-    var suff = "Please enter a zip code manually.";
+    var suff = "Please enter a location manually.";
     var message;
     switch (error.code) {
         case error.PERMISSION_DENIED:
@@ -82,3 +82,51 @@ function getLocationByZipCity(param, callback) {
         callback(jsonObj);
     });
 }
+
+//movie api with results
+//most used words in movie title array
+var searchWords = ["dog", "cat", "comedy", "romance", "black", "love", "blood", "big", "ghost", "private", "new", "king", 
+                  "girl", "american", "death", "pink", "doctor", "world", "sex", "children", "true", "Double", "Behind", "john",
+                  'kill', 'amor', 'red', 'madame', 'hollywood', 'journey', 'hong', 'born', 'never', 'oh', 'house', 'inside',
+                  'life', 'road', 'dark', 'time', 'heart', 'midnight', 'david', 'home', 'something', 'two', 'gun', 'seven', 'beyond',
+                  'monster', 'christmas', 'last', 'deadly', 'max', 'escape', 'first', 'alice', 'boy', 'ten', 'mother', 'alien', 
+                  'hotel', 'father', 'mr', 'dirty', 'digital', 'bad', 'take', 'wild', 'three', 'american', 'cold', 'star', 'five',
+                  'blue', 'family', 'tales', 'dragon', 'shin', 'city', 'dream', 'adventure', 'kiss', 'space', 'women', 'angel',
+                  'how', 'what', 'why', 'when', 'the', 'summer', 'spy' ];
+
+//randomly picking a word from the array
+var randomResult = searchWords[Math.floor(Math.random()*searchWords.length)];
+
+    $.ajax({
+        url:"http://www.omdbapi.com/?s="+ randomResult +"&apikey=39a85d37&limit=3",
+        method: "GET"
+    }).then(function(response){
+        
+        $("#randomMovie").on("click", function(){
+            console.log(response);
+        });
+    });
+
+//NY Times Book Search 
+var searchBookWords = ['girl', 'you', 'dark', 'love', 'life', 'star', 'night', 'i', 'to be', 'heart', 'lie', 'me', 'fall', 'break', 
+                       'shadow', 'world', 'last', 'we', 'other', 'end', 'dragon', 'war', 'night', 'dead', 'city', 'blood', 'magic',
+                       'fire', 'dream', 'wolf', 'black', 'king', 'lord', 'book', 'light', 'moon', 'time', 'last', 'god', 'star', 'storm', 
+                       'heart', 'demon', 'red', 'blue', 'hunt', 'knight', 'gate', 'man', 'gold', 'sword', 'spy' ];
+
+var randomBookResult = searchBookWords[Math.floor(Math.random()*searchBookWords.length)];
+
+var url = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json";
+                url += '?' + $.param({
+                'api-key': "9e0bbef14d9144aebbfee114118e2d76",
+                'title': randomBookResult
+            });
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                }).done(function(result) {
+                    $("#randomBook").on("click", function(){
+                    console.log(result);   
+                    });
+                }).fail(function(err) {
+                    throw err;
+            });
