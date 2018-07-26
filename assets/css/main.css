@@ -2,6 +2,8 @@ team-style
 *   {
     box-sizing: border-box;
     position: relative;
+    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Righteous', cursive;
 }
 
 /* #title  {
@@ -25,15 +27,14 @@ html, body {
 }
 
 #map-area {
-    margin: 0 auto;
-    height: 500px;
-    width: 650px;
+    height: 250px;
+    width: 100%;
 }
 
 #location-error {
     position: absolute;
     top: 0;
     width: 100%;
-
+    color: white;
 }
 /* End testing map */
