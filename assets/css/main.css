@@ -1,34 +1,45 @@
-team-style
-*   {
+team-style * {
     box-sizing: border-box;
     position: relative;
+    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Righteous', cursive;
 }
 
-#headline{
+#headline {
     color: lightblue;
     text-emphasis: bold;
     font-size: 40px;
 }
 
-#headline1{
+#headline1 {
     color: lightblue;
     text-emphasis: bold;
     font-size: 14px;
 }
-/* #title  {
-    padding: 20px;
-    margin-bottom: 20px;
-} */
 
-body    {
+body {
     background-color: #003366;
 }
 
-#food   {
+#food {
     margin: 10px;
     display: inline;
 }
-/* Testing map */
+
+/* Make food input more visible */
+#food-input:focus {
+    color: #6A747D;
+}
+
+#food-input, #food-input::placeholder {
+    color: white;
+}
+#randomNight {
+    height: 335px;
+    overflow-y: auto;
+}
+
+/* MAP STYLE */
 
 html, body {
     height: 100%;
@@ -36,13 +47,10 @@ html, body {
     padding: 0;
 }
 
-
-
 #map-area {
-    height: 250px;
+    height: 315px;
     width: 100%;
     margin: 1px;
-
 }
 
 #location-error {
@@ -51,4 +59,55 @@ html, body {
     width: 100%;
     color: white;
 }
-/* End testing map */
+
+/* END MAP STYLE */
+
+/* modal style */
+/* Bordered form */
+form {
+    border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
