@@ -91,6 +91,7 @@ $(document).on("click", "#logout", function () {
         $("#logout").remove();
         var $login = $("<p>").attr('id', "login").html("Log In / Sign Up");
         $("#authbar").append($login);
+        $("#title").css("margin-top", "20px");
     }).catch(function (err) {
             // Handle errors
             console.log("Error signing out");
