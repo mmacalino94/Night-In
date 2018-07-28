@@ -5,97 +5,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Night In</title>
-  <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Righteous" rel="stylesheet">
+    <title>A Night In</title>
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Righteous" rel="stylesheet">
     <!-- Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
     <link rel='stylesheet' href='assets/css/main.css'>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div id="title" class="container-fluid">
         <div class='row'>
             <div class='card-panel z-depth-2 black accent-3 white-text col-md-12'>
                 <h3 id='headline' class='center-align'>A Night In</h3>
-                <h6 id='headline1' class='center-align'> What will you night in look like?</h6>
+                <h6 id='headline1' class='center-align'> What will your night in look like?</h6>
             </div>
         </div>
     </div>
     <div id="search" class="container">
         <div class="row">
-                <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
-                    <div class="card-header">Food</div>
-                    <div class="card-body">
-                        <!-- <h5 class="card-title">Secondary card title</h5> -->
-                        <div class="card-text">
-                            <form>
-                                <div class="form-group text-white">
-                                  <label for="formGroupExampleInput" class="text-white">What are you craving?</label>
-                                  <input type="text" class="form-control text-white" id="formGroupExampleInput" placeholder="Example input">
-                                </div>
-                            </form>
-                        </div>
+            <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
+                <div class="card-header">Food</div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <form>
+                            <div class="form-group text-white">
+                                <label for="formGroupExampleInput" class="text-white">What are you craving?</label>
+                                <input type="text" class="form-control" id="food-input" placeholder="Cheesy fries?">
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
-                    <div class="card-header">Drink</div>
-                    <div class="card-body">
-                        <!-- <h5 class="card-title">Secondary card title</h5> -->
-                        <div class="card-text">
-                            <fieldset class="form-group">
-                                <div class="row">
-                                    <!-- <legend class="col-form-label col-sm-2 pt-0"></legend> -->
-                                    <div class="col-sm-10">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="custom-control-label text-white" for="customCheck1">Beer</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                            <label class="custom-control-label text-white" for="customCheck2">Wine</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
-                <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
-                    <div class="card-header">Entertainment</div>
-                    <div class="card-body">
-                        <!-- <h5 class="card-title">Secondary card title</h5> -->
-
-                        <div class="card-text">
-                            <fieldset class="form-group">
-                                <div class="row">
-                                    <!-- <legend class="col-form-label col-sm-2 pt-0"></legend> -->
-                                    <div class="col-sm-10">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                            <label class="custom-control-label text-white" for="customCheck3">Novel</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                            <label class="custom-control-label text-white" for="customCheck4">Movies</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                  </div>
-
-                    </div>
-                </div>
-                <button id='randomizer' type="button" class="btn btn-info btn-large btn-block">Randomize!</button>
             </div>
+            <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
+                <div class="card-header">Drink</div>
+                <div class="card-body">
+                    <!-- <h5 class="card-title">Secondary card title</h5> -->
+                    <div class="card-text">
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <!-- <legend class="col-form-label col-sm-2 pt-0"></legend> -->
+                                <div class="col-sm-10">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="beer-checkbox">
+                                        <label class="custom-control-label text-white" for="beer-checkbox">Beer</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="wine-checkbox">
+                                        <label class="custom-control-label text-white" for="wine-checkbox">Wine</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
+                <div class="card-header">Entertainment</div>
+                <div class="card-body">
+                    <!-- <h5 class="card-title">Secondary card title</h5> -->
+
+                    <div class="card-text">
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <!-- <legend class="col-form-label col-sm-2 pt-0"></legend> -->
+                                <div class="col-sm-10">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="novel-checkbox">
+                                        <label class="custom-control-label text-white" for="novel-checkbox">Novel</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="movie-checkbox">
+                                        <label class="custom-control-label text-white" for="movie-checkbox">Movies</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </div>
+            <button id='randomizer' type="button" class="btn btn-info btn-large btn-block">Randomize!</button>
+        </div>
         <div class="row">
             <div class="resultsBox card text-white bg-secondary mb-4 col-lg-6 mx-auto">
                 <div class="card-header">For Your Night In</div>
                 <div id='randomNight' class="card-body">
-                    <p class="card-text"></p>
-
                 </div>
             </div>
             <div class="card text-white bg-secondary mb-4 col-lg-5 mx-auto">
@@ -111,8 +110,9 @@
     </div>
 
     <script src="assets/js/main.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCdoZ1np2q1OgYjnjq8OvLg3OwoSX5-Rk&callback=getLocation" async defer></script>
+    <script src="assets/js/tweaks.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCdoZ1np2q1OgYjnjq8OvLg3OwoSX5-Rk&callback=getLocation" async
+        defer></script>
 </body>
 
 </html
-
