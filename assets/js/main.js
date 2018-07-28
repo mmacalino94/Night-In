@@ -86,8 +86,6 @@ function getLocationByZipCity(param, callback) {
 //Randomize Button Function
 
 $('#randomizer').on('click', function(){
-    // movieSearch();
-    // bookSearch();
 
     if($('#customCheck1').is(":checked")){
         beerSearch();
