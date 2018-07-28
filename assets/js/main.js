@@ -194,3 +194,8 @@ function wineSearch() {
     $('#randomNight').prepend('<h6> Wine: </h6> <p>' + randomWineResult + '</p>');
 }
 
+// modal function
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
