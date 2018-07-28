@@ -1,36 +1,45 @@
-team-style
-*   {
+team-style * {
     box-sizing: border-box;
     position: relative;
     font-family: 'Fjalla One', sans-serif;
     font-family: 'Righteous', cursive;
 }
 
-#headline{
+#headline {
     color: lightblue;
     text-emphasis: bold;
     font-size: 40px;
 }
 
-#headline1{
+#headline1 {
     color: lightblue;
     text-emphasis: bold;
     font-size: 14px;
 }
-/* #title  {
-    padding: 20px;
-    margin-bottom: 20px;
-} */
 
-body    {
+body {
     background-color: #003366;
 }
 
-#food   {
+#food {
     margin: 10px;
     display: inline;
 }
-/* Testing map */
+
+/* Make food input more visible */
+#food-input:focus {
+    color: #6A747D;
+}
+
+#food-input, #food-input::placeholder {
+    color: white;
+}
+#randomNight {
+    height: 335px;
+    overflow-y: auto;
+}
+
+/* MAP STYLE */
 
 html, body {
     height: 100%;
@@ -38,13 +47,10 @@ html, body {
     padding: 0;
 }
 
-
-
 #map-area {
-    height: 250px;
+    height: 315px;
     width: 100%;
     margin: 1px;
-
 }
 
 #location-error {
@@ -53,4 +59,5 @@ html, body {
     width: 100%;
     color: white;
 }
-/* End testing map */
+
+/* END MAP STYLE */
