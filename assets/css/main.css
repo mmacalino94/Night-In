@@ -1,3 +1,46 @@
+/* Authentication bar + sign-in / sign-up modals */
+
+#authbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#authbar p {
+    padding: 0 5px;
+    float: right;
+    color: white;
+}
+
+#authbar p:hover {
+    cursor: pointer;
+}
+
+#title {
+    margin-top: 20px;
+}
+
+#authentication-container {
+    padding: 10px;
+    background-color: #9FD7E6;
+    border-radius: 5px;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#profile-img {
+    float: right;
+    height: 50px;
+    width: auto;
+    border-radius: 25px;
+}
+
+/* End authentication styles */
+
 team-style * {
     box-sizing: border-box;
     position: relative;
@@ -27,6 +70,7 @@ body {
 }
 
 /* Make food input more visible */
+
 #food-input:focus {
     color: #6A747D;
 }
@@ -34,6 +78,7 @@ body {
 #food-input, #food-input::placeholder {
     color: white;
 }
+
 #randomNight {
     height: 335px;
     overflow-y: auto;
@@ -63,12 +108,15 @@ html, body {
 /* END MAP STYLE */
 
 /* modal style */
+
 /* Bordered form */
+
 form {
     border: 3px solid #f1f1f1;
 }
 
 /* Full-width inputs */
+
 input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
@@ -79,11 +127,13 @@ input[type=text], input[type=password] {
 }
 
 /* Add a hover effect for buttons */
+
 button:hover {
     opacity: 0.8;
 }
 
 /* Extra style for the cancel button (red) */
+
 .cancelbtn {
     width: auto;
     padding: 10px 18px;
@@ -91,17 +141,20 @@ button:hover {
 }
 
 /* Add padding to containers */
+
 .container {
     padding: 16px;
 }
 
 /* The "Forgot password" text */
+
 span.psw {
     float: right;
     padding-top: 16px;
 }
 
 /* Change styles for span and cancel button on extra small screens */
+
 @media screen and (max-width: 300px) {
     span.psw {
         display: block;
@@ -112,71 +165,80 @@ span.psw {
     }
 }
 
-* {box-sizing: border-box}
+* {
+    box-sizing: border-box
+}
 
 /* Full-width input fields */
-  input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
 }
 
 input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+    background-color: #ddd;
+    outline: none;
 }
 
 hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
 }
 
 /* Set a style for all buttons */
+
 button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
 }
 
 button:hover {
-  opacity:1;
+    opacity: 1;
 }
 
 /* Extra styles for the cancel button */
+
 .cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
+    padding: 14px 20px;
+    background-color: #f44336;
 }
 
 /* Float cancel and signup buttons and add an equal width */
+
 .cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
+    float: left;
+    width: 50%;
 }
 
 /* Add padding to container elements */
+
 .container {
-  padding: 16px;
+    padding: 16px;
 }
 
 /* Clear floats */
+
 .clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
+    content: "";
+    clear: both;
+    display: table;
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
+
 @media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-    width: 100%;
-  }
+    .cancelbtn, .signupbtn {
+        width: 100%;
+    }
 }
