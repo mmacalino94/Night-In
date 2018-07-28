@@ -84,22 +84,33 @@ function getLocationByZipCity(param, callback) {
 }
 
 //Randomize Button Function
-var beerInput = $('#customCheck1');
-var wineInput = $('#customCheck2').val();
-var novelInput = $('#customCheck3').val();
-var movieInput = $('#customCheck4').val();
 
 $('#randomizer').on('click', function(){
-    movieSearch();
-    bookSearch();
-    beerSearch();
-    wineSearch();
+    // movieSearch();
+    // bookSearch();
 
-    if(beerInput.checked === true ){
-        console.log("checked");
-    }else {
-        console.log("false");
+    if($('#customCheck1').is(":checked")){
+        beerSearch();
+    }if ($('#customCheck2').is(":checked")) {
+        wineSearch();
+    }if ($('#customCheck1').is(":checked") && $('#customCheck2').is(":checked")){
+        beerSearch();
+        wineSearch();
+    }else if ($('#customCheck1').is(":checked") === false && $('#customCheck2').is(":checked") === false) {
+        $('#randomNight').append('<p> Not Drinking Tonight? </p>');  
     }
+
+    if($('#customCheck3').is(":checked")){
+        bookSearch();
+    }if ($('#customCheck4').is(":checked")) {
+        movieSearch();
+    }if ($('#customCheck3').is(":checked") && $('#customCheck4').is(":checked")){
+        bookSearch();
+        movieSearch();
+    }else if ($('#customCheck3').is(":checked") === false && $('#customCheck4').is(":checked") === false) {
+        $('#randomNight').append('<p> No Entertainment Tonight? </p>');  
+    }
+
 });
 
 
