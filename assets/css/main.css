@@ -1,7 +1,6 @@
-team-style * {
+* {
     box-sizing: border-box;
     position: relative;
-    font-family: 'Fjalla One', sans-serif;
     font-family: 'Righteous', cursive;
 }
 
