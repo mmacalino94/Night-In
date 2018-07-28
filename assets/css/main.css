@@ -6,6 +6,17 @@ team-style
     font-family: 'Righteous', cursive;
 }
 
+#headline{
+    color: lightblue;
+    text-emphasis: bold;
+    font-size: 40px;
+}
+
+#headline1{
+    color: lightblue;
+    text-emphasis: bold;
+    font-size: 14px;
+}
 /* #title  {
     padding: 20px;
     margin-bottom: 20px;
@@ -16,7 +27,8 @@ body    {
 }
 
 #food   {
-    width: 100%;
+    margin: 10px;
+    display: inline;
 }
 /* Testing map */
 
@@ -26,9 +38,13 @@ html, body {
     padding: 0;
 }
 
+
+
 #map-area {
     height: 250px;
     width: 100%;
+    margin: 1px;
+
 }
 
 #location-error {
