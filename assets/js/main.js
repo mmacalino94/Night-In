@@ -83,14 +83,20 @@ function getLocationByZipCity(param, callback) {
     });
 }
 
+
 //Randomize Button Function
 var $beerInput = $('#beer-checkbox');
 var $wineInput = $('#wine-checkbox');
 var $novelInput = $('#novel-checkbox');
 var $movieInput = $('#movie-checkbox');
+var $pizzaInput = $('#pizza-checkbox');
+var $chineseInput = $('#chinese-checkbox');
+var $burgerInput = $('#burger-checkbox');
+var $tacoInput = $('#taco-checkbox');
+var $chickenInput = $('#chicken-checkbox');
 
 $('#randomizer').on('click', function () {
-    var $food = $("#food-input").val();
+    //var $food = $("#food-input").val();
     if ($wineInput.is(":checked")) {
         wineSearch();
     }
@@ -103,12 +109,24 @@ $('#randomizer').on('click', function () {
     if ($movieInput.is(":checked")) {
         movieSearch();
     }
-    if ($food) {
-        // Add food to map
+    if ($pizzaInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="pizzaSearch();">Your Pizza Options</button>');
+        console.log('check');
+    }
+    if ($chineseInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="ChineseSearch();">Your Chinese Options</button>');
+    }
+    if ($burgerInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="burgerSearch();">Your Burger Options</button>');
+    }
+    if ($tacoInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="tacoSearch();">Your Taco Options</button>');
+    }
+    if ($chickenInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="chickenSearch();">Your Chicken Options</button>');
     }
     // Use modal to say nothing chosen?
 });
-
 
 //movie api with results
 //most used words in movie title array
@@ -194,8 +212,28 @@ function wineSearch() {
     $('#randomNight').prepend('<h6> Wine: </h6> <p>' + randomWineResult + '</p>');
 }
 
+//food links
+function pizzaSearch(){
+    window.location="https://www.google.com/search?source=hp&ei=yNhdW92zF4q6tgXjjqngCQ&q=pizza&oq=pizza&gs_l=psy-ab.3..0i131k1l3j0l2j0i131k1j0j0i131k1j0j0i131k1.2867.3893.0.4470.5.4.0.1.1.0.110.382.3j1.4.0....0...1c.1.64.psy-ab..0.5.397....0.36xFKvyvNas";
+};
+
+function chineseSearch(){
+    window.location="https://www.google.com/search?ei=zdhdW87fJI-YsAXrr4qQBg&q=chinese+food&oq=chinese&gs_l=psy-ab.3.0.0i131i67k1j0i131k1j0i67k1l2j0i131i67k1j0i131k1j0i67k1j0l3.218043.219025.0.220131.7.5.0.2.2.0.198.567.0j4.4.0....0...1c.1.64.psy-ab..1.6.655....0.TwGHb9HWgxk";
+};
+
+function burgerSearch(){
+    window.location="https://www.google.com/search?ei=q9ldW-CwB8KUtQXu367oAg&q=burgers&oq=burgers&gs_l=psy-ab.3..0i131i67k1j0i131k1j0l8.33977.36346.0.37300.7.6.0.1.1.0.182.804.0j6.6.0....0...1c.1.64.psy-ab..1.6.670...0i67k1.0.dM50MV65tBg";
+};
+
+function tacoSearch(){
+    window.location="https://www.google.com/search?ei=7NldW4CSA4-gtQW9uJ_ACQ&q=mexican+food&oq=mexican&gs_l=psy-ab.3.1.0i67k1j0i131i67k1j0i67k1j0i131i67k1j0i131k1j0i67k1l5.3239.4350.0.5961.7.3.0.4.4.0.174.428.0j3.3.0....0...1c.1.64.psy-ab..0.7.554...0.0.rczzG1KyCX8";
+};
+
+function chickenSearch(){
+    window.location="https://www.google.com/search?ei=D9pdW4OfAsK8sQXbjr3IAw&q=chicken&oq=chicken&gs_l=psy-ab.3..0i67k1l8j0i131i67k1j0i67k1.3038.5511.0.5676.11.6.2.3.3.0.148.797.0j6.6.0....0...1c.1.64.psy-ab..0.11.951...0j0i131k1j0i10k1.0.WZt8nXXe-TM";
+};
+
 // modal function
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus');
 });
-
