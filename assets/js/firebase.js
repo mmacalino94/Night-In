@@ -20,12 +20,12 @@ var uiConfig = {
     callbacks: {
         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
             console.log(authResult);
+            console.log(redirectUrl);
             $("#authentication-container").toggle();
             removeSignInLink();
             addLogoutLink();
             addProfilePic(authResult.additionalUserInfo.profile.picture);
             // db.ref().push("Gloop");
-
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
