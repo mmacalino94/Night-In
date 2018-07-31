@@ -20,10 +20,11 @@ function logIn() {
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
+        var uid = user.providerData[0].uid;
         // ...
         localStorage.setItem("access_token", token);
         localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("UID", JSON.stringify(user.providerData[0].uid));
+        localStorage.setItem("UID", JSON.stringify(uid));
     }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -40,8 +41,17 @@ function logIn() {
 firebase.auth().onAuthStateChanged(function (user) {
     window.user = user; // user is undefined if no user signed in
     if (window.user) {
-        console.log("I'm logged in!!");
-        console.log({window:user});
+        var uid = user.uid;
+        var userRef = db.ref("users");
+        var useridRef = userRef.child(uid);
+        useridRef.once("value", function(snap) {
+            if (!snap.val()) {
+                useridRef.set({
+                    email: user.email,
+                    name: user.displayName,
+                });
+            }
+        });
         removeSignInLink();
         addLogoutLink();
         addProfilePic(window.user.providerData[0].photoURL);
