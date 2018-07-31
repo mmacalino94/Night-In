@@ -9,7 +9,7 @@ function initMap(coords) {
             lat: coords.lat,
             lng: coords.long
         },
-        zoom: 13
+        zoom: 12
     });
 }
 
