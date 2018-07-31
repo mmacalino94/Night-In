@@ -55,7 +55,7 @@ function handleLocationError(message) {
     var mess = $("<p>");
     mess.html(message);
     div.append(mess);
-    var input = $("<input>").attr("type", "text").attr("pattern", "[0-9]{5}").attr("title", "Five digit zip code").attr("id", "user-location");
+    var input = $("<input>").attr("type", "text").attr("pattern", "[0-9]{5}").attr("title", "Five digit zip code").attr("id", "user-location").addClass('text-dark');
     var button = $("<button>").attr("type", "button").addClass("btn").html("Go!");
     $("#map-area").append(mess).append(input).append(button);
     $(button).on("click", function () {
