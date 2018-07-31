@@ -150,7 +150,8 @@ function makeMarkers(results, status) {
                 map: map,
                 place: {
                     placeId: place.place_id,
-                    location: place.geometry.location
+                    location: place.geometry.location,
+                    title: place.name
                 }
             });
         }
