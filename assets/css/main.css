@@ -2,7 +2,7 @@
 /* Authentication bar + sign-in / sign-up modals */
 
 #authbar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -20,7 +20,7 @@
 }
 
 #title {
-    margin-top: 35px;
+    margin-top: 25px;
 }
 
 #profile-img {

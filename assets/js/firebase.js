@@ -12,58 +12,42 @@ var config = {
 firebase.initializeApp(config);
 var db = firebase.database();
 
-// Initialize authentication instance
-const fbAuth = firebase.auth();
-var ui = new firebaseui.auth.AuthUI(fbAuth);
-
-var uiConfig = {
-    callbacks: {
-        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-            console.log(authResult);
-            console.log(redirectUrl);
-            $("#authentication-container").toggle();
-            removeSignInLink();
-            addLogoutLink();
-            addProfilePic(authResult.additionalUserInfo.profile.picture);
-            // db.ref().push("Gloop");
-            // User successfully signed in.
-            // Return type determines whether we continue the redirect automatically
-            // or whether we leave that to developer to handle.
-            return false;
-        },
-        uiShown: function () {
-            // The widget is rendered.
-            // Hide the loader.
-            document.getElementById('loader').style.display = 'none';
-        }
-    },
-    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    signInFlow: 'popup',
-    signInSuccessUrl: 'https://krab7191.github.io/Night-In/',
-    signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    ]
-    // Terms of service url.
-    // tosUrl: 'https://krab7191.github.io/Night-In/',
-    // Privacy policy url.
-    // privacyPolicyUrl: 'https://krab7191.github.io/Night-In/'
-};
-
-// Put the auth container in the modal
-ui.start('#firebaseui-auth-container', uiConfig);
+// Use firebase popup login
+var provider = new firebase.auth.GoogleAuthProvider();
+function logIn() {
+    firebase.auth().signInWithPopup(provider).then(function (result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+        localStorage.setItem("access_token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("UID", JSON.stringify(user.providerData[0].uid));
+    }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+    });
+}
 
 // Make only signed in users save stuff
 firebase.auth().onAuthStateChanged(function (user) {
     window.user = user; // user is undefined if no user signed in
     if (window.user) {
         console.log("I'm logged in!!");
-        console.log(window.user);
+        console.log({window:user});
         removeSignInLink();
         addLogoutLink();
         addProfilePic(window.user.providerData[0].photoURL);
     }
     else {
-        console.log("log in please...");
+        console.log("Not logged in");
     }
 });
 
@@ -82,18 +66,18 @@ function addProfilePic(url) {
 }
 
 $("#login").on("click", function () {
-    $("#authentication-container").modal("show");
+    logIn();
 });
+
 $(document).on("click", "#logout", function () {
-    firebase.auth().signOut().then(function() {
-        console.log("signed out successfully");
+    firebase.auth().signOut().then(function () {
         $("#profile-img").remove();
         $("#logout").remove();
         var $login = $("<p>").attr('id', "login").html("Log In / Sign Up");
         $("#authbar").append($login);
-        $("#title").css("margin-top", "35px");
+        $("#title").css("margin-top", "25px");
     }).catch(function (err) {
-            // Handle errors
-            console.log("Error signing out");
-        });
+        // Handle errors
+        console.log("Error signing out");
+    });
 });
