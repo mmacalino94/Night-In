@@ -6,21 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>A Night In</title>
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Righteous" rel="stylesheet">
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <!-- Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel='stylesheet' href='assets/css/main.css'>
-    <!-- Compiled and minified JavaScript -->
+    <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-    <!-- Firebase AUTH -->
+    <!-- Bootstrap JS & popper for modals -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+    <!-- Firebase & firebase AUTH -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+
+    <!-- Our sheet -->
+    <link rel='stylesheet' href='assets/css/main.css'>
 </head>
 
 <body>
+    <div id="authbar">
+        <p id="login">
+            Login / Sign Up
+        </p>
+    </div>
     <div id="title" class="container-fluid">
         <div class='row'>
             <div class='card-panel z-depth-2 black accent-3 white-text col-md-12'>
@@ -31,7 +49,7 @@
     </div>
     <div id="search" class="container">
         <div class="row">
-            <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
+            <!-- <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
                 <div class="card-header">Food</div>
                 <div class="card-body">
                     <div class="card-text">
@@ -43,7 +61,43 @@
                         </form>
                     </div>
                 </div>
+            </div> -->
+            <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
+                <div class="card-header">Food</div>
+                <div class="card-body">
+                    <!-- <h5 class="card-title">Secondary card title</h5> -->
+                    <div class="card-text">
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <!-- <legend class="col-form-label col-sm-2 pt-0"></legend> -->
+                                <div class="col-sm-10">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="pizza-checkbox">
+                                        <label class="custom-control-label text-white" for="pizza-checkbox">Pizza</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="chinese-checkbox">
+                                        <label class="custom-control-label text-white" for="chinese-checkbox">Chinese Food</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="burger-checkbox">
+                                        <label class="custom-control-label text-white" for="burger-checkbox">Burger</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="taco-checkbox">
+                                        <label class="custom-control-label text-white" for="taco-checkbox">Taco</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="chicken-checkbox">
+                                        <label class="custom-control-label text-white" for="chicken-checkbox">Chicken</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
             </div>
+
             <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
                 <div class="card-header">Drink</div>
                 <div class="card-body">
@@ -111,36 +165,63 @@
             </div>
         </div>
     </div>
-    
-<form action="action_page.php">
+
+    <div class="modal" tabindex="-1" role="dialog" id="intro">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">A night in</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Welcome to NightIn! Please let us make your NightIn plans!</p>
+                    <p>
+                        Let us remove the pressure of deciding what to do on your night in. Select what you'd like and click Randomize to get exciting
+                        new suggestions of what to do, local food deliveries and more.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-  
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+    // Authbar modal
+    <div id="authentication-container" class="modal fade" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" id="firebaseui-auth-container">
+                    <div id="loader">Loading...</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+    // General purpose modal, add content as needed programmatically
+    <div class="modal fade" tabindex="-1" role="dialog" id="general_message">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="general_message_content">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </form>
 
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/tweaks.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <script src="assets/js/firebase.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCdoZ1np2q1OgYjnjq8OvLg3OwoSX5-Rk&callback=getLocation" async
-        defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCdoZ1np2q1OgYjnjq8OvLg3OwoSX5-Rk&callback=getLocation&libraries=places"
+        async defer></script>
+    <!-- AIzaSyBNoFJD2L6u-GjLmNt9EcsxjUByUYUxbVw  PLACES API KEY-->
 </body>
 
-</html
-
+</html>

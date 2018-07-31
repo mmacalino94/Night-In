@@ -2,7 +2,6 @@ var map; // Holds API map object
 
 // Initialize the map with the users coordinates
 function initMap(coords) {
-    console.log(coords);
     map = new google.maps.Map(document.getElementById('map-area'), {
         center: {
             lat: coords.lat,
@@ -48,12 +47,10 @@ function formatJsonObj(obj) {
         lat: lat,
         long: lng
     };
-    console.log(latLngObj);
     initMap(latLngObj);
 }
 // Show an overlay over the map area prompting user to enter location manually
 function handleLocationError(message) {
-    console.log(message);
     var div = $("<div>").attr("id", "location-error");
     var mess = $("<p>");
     mess.html(message);
@@ -73,6 +70,11 @@ function getLocationByZipCity(param, callback) {
     $.get({
         url: "https://maps.googleapis.com/maps/api/geocode/json?address={" + param + "}"
     }).then(function (data) {
+        if (data.status === "ZERO_RESULTS") {
+            // Ephemeral modal saying no results, try again.
+            showModal("general_message", "Location not found, please try again.");
+            hideModal("general_message", 3000);
+        }
         var lat = data.results[0].geometry.location.lat;
         var long = data.results[0].geometry.location.lng;
         jsonObj = {
@@ -83,13 +85,62 @@ function getLocationByZipCity(param, callback) {
     });
 }
 
+// Functions to trigger / deal with modals
+
+function showModal(target, content) {
+    $("#" + target + "_content").html(content);
+    $("#" + target).modal("show");
+}
+
+function hideModal(target, time) {
+    var wait;
+    if (time) {
+        wait = time;
+    }
+    else {
+        wait = 0;
+    }
+    setTimeout(function () {
+        $("#" + target).modal("hide");
+    }, wait);
+}
+
+// On page load show modal if first time user
+
+$(function () {
+    if (!localStorage.getItem('visited')) {
+        localStorage.setItem("visited", true);
+        $("#intro").modal("show");
+    }
+});
+
+// End MODAL functions
+
+// Prevent default on form submition
+$("#food-input").keydown(function (event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        var food = $("#food-input").val();
+        // Handle food mapping function here...
+        return false;
+    }
+});
+
 //Randomize Button Function
 
-$('#randomizer').on('click', function(){
+var $beerInput = $('#beer-checkbox');
+var $wineInput = $('#wine-checkbox');
+var $novelInput = $('#novel-checkbox');
+var $movieInput = $('#movie-checkbox');
+var $pizzaInput = $('#pizza-checkbox');
+var $chineseInput = $('#chinese-checkbox');
+var $burgerInput = $('#burger-checkbox');
+var $tacoInput = $('#taco-checkbox');
+var $chickenInput = $('#chicken-checkbox');
 
-    if($('#customCheck1').is(":checked")){
-        beerSearch();
-    }if ($('#customCheck2').is(":checked")) {
+$('#randomizer').on('click', function () {
+    //var $food = $("#food-input").val();
+    if ($wineInput.is(":checked")) {
         wineSearch();
     }if ($('#customCheck1').is(":checked") && $('#customCheck2').is(":checked")){
         beerSearch();
@@ -108,9 +159,30 @@ $('#randomizer').on('click', function(){
     }else if ($('#customCheck3').is(":checked") === false && $('#customCheck4').is(":checked") === false) {
         $('#randomNight').append('<p> No Entertainment Tonight? </p>');  
     }
+
 });
 
 // Use modal to say nothing chosen?
+
+    if ($pizzaInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="pizzaSearch();">Your Pizza Options</button>');
+    }
+    if ($chineseInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="ChineseSearch();">Your Chinese Options</button>');
+    }
+    if ($burgerInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="burgerSearch();">Your Burger Options</button>');
+    }
+    if ($tacoInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="tacoSearch();">Your Taco Options</button>');
+    }
+    if ($chickenInput.is(":checked")) {
+        $('#randomNight').append('<button onclick="chickenSearch();">Your Chicken Options</button>');
+    }
+    // Use modal to say nothing chosen?
+});
+
+
 //movie api with results
 //most used words in movie title array
 function movieSearch() {
@@ -127,12 +199,8 @@ function movieSearch() {
     var randomResult = searchWords[Math.floor(Math.random() * searchWords.length)];
 
     $.get({
-        url: "http://www.omdbapi.com/?s=" + randomResult + "&apikey=39a85d37&limit=3"
+        url: "https://www.omdbapi.com/?s=" + randomResult + "&apikey=39a85d37&limit=3"
     }).then(function (response) {
-        console.log(response);
-        console.log(response.Search["2"].Title);
-        console.log(response.Search["4"].Title);
-        console.log(response.Search["6"].Title);
         $('#randomNight').prepend('<p><strong> Movie Suggestions: </strong><br>' + response.Search["2"].Title + '<br>' + response.Search["4"].Title + '<br>' + response.Search["8"].Title + '<br></p>');
     });
 }
@@ -154,13 +222,6 @@ function bookSearch() {
     $.get({
         url: url
     }).done(function (result) {
-        console.log(result);
-        console.log(result.results["4"].title);
-        console.log(result.results["4"].author);
-        console.log(result.results["6"].title);
-        console.log(result.results["6"].author);
-        console.log(result.results["8"].title);
-        console.log(result.results["8"].author);
         $('#randomNight').prepend('<p><strong> Book Suggestions: </strong><br>' + result.results["4"].title + ' by ' + result.results["4"].author + '<br>' + result.results["6"].title + ' by ' + result.results["6"].author + '<br>' + result.results["8"].title + ' by ' + result.results["8"].author + '<br></p>');
     }).fail(function (err) {
         throw err;
@@ -172,8 +233,6 @@ function beerSearch() {
     var searchBeers = ['Samuel Adams Boston Lager', 'New Belgium Trippel', 'Sierra Nevada Pale Ale', 'Rogue Dead Guy Ale', 'Stone Porter', 'Guiness Draught', 'New Belgium Fat Tire', 'Yuenling Lager', 'Red Oak Amber', 'Angry Orchard Crisp Apple', 'Guiness Blonde', 'Yuengling Black and Tan', 'Dos Equis Amber', 'Stone Arrogant Bastard Ale', 'New Belgium Voodoo Ranger', 'Fat Tire Belgian White', 'New Belgium Pilsner',];
 
     var randomBeerResult = searchBeers[Math.floor(Math.random() * searchBeers.length)];
-
-    console.log(randomBeerResult);
 
     $('#randomNight').prepend('<h6> Beer: </h6> <p>' + randomBeerResult + '</p>');
 }
@@ -190,13 +249,27 @@ function wineSearch() {
 
     var randomWineResult = searchWines[Math.floor(Math.random() * searchWines.length)];
 
-    console.log(randomWineResult);
-
     $('#randomNight').prepend('<h6> Wine: </h6> <p>' + randomWineResult + '</p>');
 }
 
-// modal function
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
+//food links
+function pizzaSearch() {
+    window.location = "https://www.google.com/search?source=hp&ei=yNhdW92zF4q6tgXjjqngCQ&q=pizza&oq=pizza&gs_l=psy-ab.3..0i131k1l3j0l2j0i131k1j0j0i131k1j0j0i131k1.2867.3893.0.4470.5.4.0.1.1.0.110.382.3j1.4.0....0...1c.1.64.psy-ab..0.5.397....0.36xFKvyvNas";
+}
+
+function chineseSearch() {
+    window.location = "https://www.google.com/search?ei=zdhdW87fJI-YsAXrr4qQBg&q=chinese+food&oq=chinese&gs_l=psy-ab.3.0.0i131i67k1j0i131k1j0i67k1l2j0i131i67k1j0i131k1j0i67k1j0l3.218043.219025.0.220131.7.5.0.2.2.0.198.567.0j4.4.0....0...1c.1.64.psy-ab..1.6.655....0.TwGHb9HWgxk";
+}
+
+function burgerSearch() {
+    window.location = "https://www.google.com/search?ei=q9ldW-CwB8KUtQXu367oAg&q=burgers&oq=burgers&gs_l=psy-ab.3..0i131i67k1j0i131k1j0l8.33977.36346.0.37300.7.6.0.1.1.0.182.804.0j6.6.0....0...1c.1.64.psy-ab..1.6.670...0i67k1.0.dM50MV65tBg";
+}
+
+function tacoSearch() {
+    window.location = "https://www.google.com/search?ei=7NldW4CSA4-gtQW9uJ_ACQ&q=mexican+food&oq=mexican&gs_l=psy-ab.3.1.0i67k1j0i131i67k1j0i67k1j0i131i67k1j0i131k1j0i67k1l5.3239.4350.0.5961.7.3.0.4.4.0.174.428.0j3.3.0....0...1c.1.64.psy-ab..0.7.554...0.0.rczzG1KyCX8";
+}
+
+function chickenSearch() {
+    window.location = "https://www.google.com/search?ei=D9pdW4OfAsK8sQXbjr3IAw&q=chicken&oq=chicken&gs_l=psy-ab.3..0i67k1l8j0i131i67k1j0i67k1.3038.5511.0.5676.11.6.2.3.3.0.148.797.0j6.6.0....0...1c.1.64.psy-ab..0.11.951...0j0i131k1j0i10k1.0.WZt8nXXe-TM";
+}
 
