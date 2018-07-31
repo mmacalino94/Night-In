@@ -277,6 +277,7 @@ function changeHeart(targ) {
 $(document).on("click", ".heart", function (event) {
     var $targ = $(this);
     changeHeart($targ[0]);
+    pushToFirebase($targ[0]);
 });
 
 //movie api with results
