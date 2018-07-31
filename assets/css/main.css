@@ -3,7 +3,7 @@
 
 #authbar {
     position: absolute;
-    top: 1%;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 1;
@@ -20,18 +20,7 @@
 }
 
 #title {
-    margin-top: 20px;
-}
-
-#authentication-container {
-    padding: 10px;
-    background-color: #9FD7E6;
-    border-radius: 5px;
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 35px;
 }
 
 #profile-img {

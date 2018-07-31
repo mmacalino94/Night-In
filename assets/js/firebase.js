@@ -22,7 +22,7 @@ var uiConfig = {
             $("#authentication-container").toggle();
             removeSignInLink();
             addLogoutLink();
-            addProfilePic(authResult);
+            addProfilePic(authResult.additionalUserInfo.profile.picture);
             // db.ref().push("Gloop");
 
             // User successfully signed in.
@@ -60,6 +60,9 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (window.user) {
         console.log("I'm logged in!!");
         console.log(window.user);
+        removeSignInLink();
+        addLogoutLink();
+        addProfilePic(window.user.providerData[0].photoURL);
     }
     else {
         console.log("log in please...");
@@ -73,16 +76,15 @@ function addLogoutLink() {
     var $logout = $("<p>").attr("id", "logout").html("Log Out");
     $("#authbar").append($logout);
 }
-function addProfilePic(userData) {
+function addProfilePic(url) {
     var $img = $("<img>").attr("id", "profile-img");
-    var src = userData.additionalUserInfo.profile.picture;
-    $img.attr("src", src);
+    $img.attr("src", url);
     $("#authbar").append($img);
     $("#title").css("margin-top", "50px");
 }
 
 $("#login").on("click", function () {
-    $("#authentication-container").toggle();
+    $("#authentication-container").modal("show");
 });
 $(document).on("click", "#logout", function () {
     firebase.auth().signOut().then(function() {
