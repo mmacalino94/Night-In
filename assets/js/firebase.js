@@ -14,6 +14,9 @@ var db = firebase.database();
 
 // Use firebase popup login
 var provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({
+    prompt: 'select_account'
+});
 function logIn() {
     firebase.auth().signInWithPopup(provider).then(function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -81,6 +84,7 @@ $("#login").on("click", function () {
 
 $(document).on("click", "#logout", function () {
     firebase.auth().signOut().then(function () {
+        localStorage.clear();
         $("#profile-img").remove();
         $("#logout").remove();
         var $login = $("<p>").attr('id', "login").html("Log In / Sign Up");
