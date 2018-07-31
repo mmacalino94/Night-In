@@ -75,7 +75,6 @@ function addProfilePic(url) {
     var $img = $("<img>").attr("id", "profile-img");
     $img.attr("src", url);
     $("#authbar").append($img);
-    $("#title").css("margin-top", "50px");
 }
 
 $("#login").on("click", function () {
@@ -89,7 +88,6 @@ $(document).on("click", "#logout", function () {
         $("#logout").remove();
         var $login = $("<p>").attr('id', "login").html("Log In / Sign Up");
         $("#authbar").append($login);
-        $("#title").css("margin-top", "25px");
     }).catch(function (err) {
         // Handle errors
         console.log("Error signing out");
