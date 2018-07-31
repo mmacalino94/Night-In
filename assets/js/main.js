@@ -146,7 +146,7 @@ $('#randomizer').on('click', function () {
         beerSearch();
         wineSearch();
     }else if ($('#customCheck1').is(":checked") === false && $('#customCheck2').is(":checked") === false) {
-        $('#randomNight').append('<p> Not Drinking Tonight? </p>');  
+        $('#randomNight').append('<p> Not Drinking Tonight? </p>');
     }
 
     if($('#customCheck3').is(":checked")){
@@ -157,10 +157,8 @@ $('#randomizer').on('click', function () {
         bookSearch();
         movieSearch();
     }else if ($('#customCheck3').is(":checked") === false && $('#customCheck4').is(":checked") === false) {
-        $('#randomNight').append('<p> No Entertainment Tonight? </p>');  
+        $('#randomNight').append('<p> No Entertainment Tonight? </p>');
     }
-
-});
 
 // Use modal to say nothing chosen?
 
