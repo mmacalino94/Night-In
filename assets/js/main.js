@@ -70,6 +70,7 @@ function getLocationByZipCity(param, callback) {
     $.get({
         url: "https://maps.googleapis.com/maps/api/geocode/json?address={" + param + "}"
     }).then(function (data) {
+        console.log(data);
         if (data.status === "ZERO_RESULTS") {
             // Ephemeral modal saying no results, try again.
             showModal("general_message", "Location not found, please try again.");
@@ -142,25 +143,25 @@ $('#randomizer').on('click', function () {
     //var $food = $("#food-input").val();
     if ($wineInput.is(":checked")) {
         wineSearch();
-    }if ($('#customCheck1').is(":checked") && $('#customCheck2').is(":checked")){
+    } if ($('#customCheck1').is(":checked") && $('#customCheck2').is(":checked")) {
         beerSearch();
         wineSearch();
-    }else if ($('#customCheck1').is(":checked") === false && $('#customCheck2').is(":checked") === false) {
+    } else if ($('#customCheck1').is(":checked") === false && $('#customCheck2').is(":checked") === false) {
         $('#randomNight').append('<p> Not Drinking Tonight? </p>');
     }
 
-    if($('#customCheck3').is(":checked")){
+    if ($('#customCheck3').is(":checked")) {
         bookSearch();
-    }if ($('#customCheck4').is(":checked")) {
+    } if ($('#customCheck4').is(":checked")) {
         movieSearch();
-    }if ($('#customCheck3').is(":checked") && $('#customCheck4').is(":checked")){
+    } if ($('#customCheck3').is(":checked") && $('#customCheck4').is(":checked")) {
         bookSearch();
         movieSearch();
-    }else if ($('#customCheck3').is(":checked") === false && $('#customCheck4').is(":checked") === false) {
+    } else if ($('#customCheck3').is(":checked") === false && $('#customCheck4').is(":checked") === false) {
         $('#randomNight').append('<p> No Entertainment Tonight? </p>');
     }
 
-// Use modal to say nothing chosen?
+    // Use modal to say nothing chosen?
 
     if ($pizzaInput.is(":checked")) {
         $('#randomNight').append('<button onclick="pizzaSearch();">Your Pizza Options</button>');
