@@ -10,11 +10,17 @@
 
 #randomNight div p, .heart {
     float: left;
-    padding-right: 5px;
+    padding-right: 8px;
 }
 
 #randomNight a {
     color: #003268;
+}
+
+.movie-poster {
+    height: 100px;
+    width: auto;
+    margin-left: 10px;
 }
 
 /* Authentication bar + sign-in / sign-up modals */

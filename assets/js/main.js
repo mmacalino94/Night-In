@@ -217,6 +217,15 @@ function formatOptions(obj) {
         }
         $div.append($favImg.clone()).append(bk).addClass("book").append("<br><br>");
     }
+    if (obj.movie) {
+        console.log(obj.movie);
+        var $link = $("<a>");
+        $link.html(obj.movie.Title);
+        $link.attr("href", "https://www.imdb.com/title/" + obj.movie.imdbID);
+        $link.attr("target", "_blank");
+        var $img = $("<img>").attr("src", obj.movie.Poster).addClass("movie-poster");
+        $div.append($favImg.clone()).append($link).append($img).append("<br><br>");
+    }
     return $div;
 }
 
@@ -289,6 +298,7 @@ function booksCallback(data) {
 }
 var movie;
 function moviesCallback(data) {
+    console.log(data);
     movie = data;
 }
 // Go ahead and make the book ajax request when the checkbox is toggled
@@ -301,7 +311,7 @@ $($novelInput).change(function () {
     }
 });
 // Make movie API request when checkbox is clicked
-$($novelInput).change(function () {
+$($movieInput).change(function () {
     if ($(this).is(":checked")) {
         movieSearch();
     }
