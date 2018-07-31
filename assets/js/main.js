@@ -109,6 +109,7 @@ function hideModal(target, time) {
     }, wait);
 }
 
+// On page load show modal
 $(function () {
     $("#intro").modal("show");
 });
@@ -275,7 +276,3 @@ function chickenSearch() {
     window.location = "https://www.google.com/search?ei=D9pdW4OfAsK8sQXbjr3IAw&q=chicken&oq=chicken&gs_l=psy-ab.3..0i67k1l8j0i131i67k1j0i67k1.3038.5511.0.5676.11.6.2.3.3.0.148.797.0j6.6.0....0...1c.1.64.psy-ab..0.11.951...0j0i131k1j0i10k1.0.WZt8nXXe-TM";
 }
 
-// modal function
-$('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus');
-});
