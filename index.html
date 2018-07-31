@@ -70,7 +70,7 @@
                         <fieldset class="form-group">
                             <div class="row">
                                 <!-- <legend class="col-form-label col-sm-2 pt-0"></legend> -->
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" id="food-checkboxes">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="pizza-checkbox">
                                         <label class="custom-control-label text-white" for="pizza-checkbox">Pizza</label>
@@ -101,12 +101,10 @@
             <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
                 <div class="card-header">Drink</div>
                 <div class="card-body">
-                    <!-- <h5 class="card-title">Secondary card title</h5> -->
                     <div class="card-text">
                         <fieldset class="form-group">
                             <div class="row">
-                                <!-- <legend class="col-form-label col-sm-2 pt-0"></legend> -->
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" id="drink-checkboxes">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="beer-checkbox">
                                         <label class="custom-control-label text-white" for="beer-checkbox">Beer</label>
@@ -124,13 +122,10 @@
             <div id="food" class="card text-white bg-secondary mb-4 col-md-3 mx-auto">
                 <div class="card-header">Entertainment</div>
                 <div class="card-body">
-                    <!-- <h5 class="card-title">Secondary card title</h5> -->
-
                     <div class="card-text">
                         <fieldset class="form-group">
                             <div class="row">
-                                <!-- <legend class="col-form-label col-sm-2 pt-0"></legend> -->
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" id="media-checkboxes">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="novel-checkbox">
                                         <label class="custom-control-label text-white" for="novel-checkbox">Novel</label>
@@ -176,7 +171,7 @@
                     <p>Welcome to NightIn! Please let us make your NightIn plans!</p>
                     <p>
                         Let us remove the pressure of deciding what to do on your night in. Select what you'd like and click Randomize to get exciting
-                        new suggestions of what to do, local food deliveries and more.
+                        new suggestions of what to do, local food deliveries and more. Check an item you like to add it to your favorites list. Sign in with your Google account to save your list.
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -216,6 +211,7 @@
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/firebase.js"></script>
+    <script src="assets/js/persist.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCdoZ1np2q1OgYjnjq8OvLg3OwoSX5-Rk&callback=getLocation&libraries=places"
         async defer></script>
     <!-- AIzaSyBNoFJD2L6u-GjLmNt9EcsxjUByUYUxbVw  PLACES API KEY-->

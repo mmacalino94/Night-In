@@ -107,7 +107,6 @@ function hideModal(target, time) {
 }
 
 // On page load show modal if first time user
-
 $(function () {
     if (!localStorage.getItem('visited')) {
         localStorage.setItem("visited", true);
@@ -140,59 +139,86 @@ var $tacoInput = $('#taco-checkbox');
 var $chickenInput = $('#chicken-checkbox');
 
 $('#randomizer').on('click', function () {
-    //var $food = $("#food-input").val();
-    if ($wineInput.is(":checked")) {
-        wineSearch();
-    } if ($('#customCheck1').is(":checked") && $('#customCheck2').is(":checked")) {
-        beerSearch();
-        wineSearch();
-    } else if ($('#customCheck1').is(":checked") === false && $('#customCheck2').is(":checked") === false) {
-        $('#randomNight').append('<p> Not Drinking Tonight? </p>');
-    }
 
-    if ($('#customCheck3').is(":checked")) {
-        bookSearch();
-    } if ($('#customCheck4').is(":checked")) {
-        movieSearch();
-    } if ($('#customCheck3').is(":checked") && $('#customCheck4').is(":checked")) {
-        bookSearch();
-        movieSearch();
-    } else if ($('#customCheck3').is(":checked") === false && $('#customCheck4').is(":checked") === false) {
-        $('#randomNight').append('<p> No Entertainment Tonight? </p>');
+    // Use modal to say nothing chosen if checkboxes all unchecked
+    var textinputs = document.querySelectorAll('input[type=checkbox]');
+    var empty = [].filter.call(textinputs, function (el) {
+        return !el.checked;
+    });
+    if (textinputs.length == empty.length) {
+        showModal("general_message", "No options chosen!");
+        hideModal("general_message", 2000);
     }
+    // Display the chosen options
+    else {
+        var options = {};
+        if ($beerInput.is(":checked")) {
+            options.beer = beerSearch();
+        }
+        if ($wineInput.is(":checked")) {
+            options.wine = wineSearch();
+        }
+        if (book != null) {
+            options.book = book;
+        }
+        if (movie != null) {
+            options.movie = movie;
+        }
+        // Put the options on the page.
+        var formattedOptions = formatOptions(options);
+        $("#randomNight").prepend(formattedOptions);
 
-    // Use modal to say nothing chosen?
-
-    if ($pizzaInput.is(":checked")) {
-        $('#randomNight').append('<button onclick="pizzaSearch();">Your Pizza Options</button>');
+        if ($pizzaInput.is(":checked")) {
+            $('#randomNight').append('<button onclick="pizzaSearch();">Your Pizza Options</button>');
+        }
+        if ($chineseInput.is(":checked")) {
+            $('#randomNight').append('<button onclick="ChineseSearch();">Your Chinese Options</button>');
+        }
+        if ($burgerInput.is(":checked")) {
+            $('#randomNight').append('<button onclick="burgerSearch();">Your Burger Options</button>');
+        }
+        if ($tacoInput.is(":checked")) {
+            $('#randomNight').append('<button onclick="tacoSearch();">Your Taco Options</button>');
+        }
+        if ($chickenInput.is(":checked")) {
+            $('#randomNight').append('<button onclick="chickenSearch();">Your Chicken Options</button>');
+        }
     }
-    if ($chineseInput.is(":checked")) {
-        $('#randomNight').append('<button onclick="ChineseSearch();">Your Chinese Options</button>');
-    }
-    if ($burgerInput.is(":checked")) {
-        $('#randomNight').append('<button onclick="burgerSearch();">Your Burger Options</button>');
-    }
-    if ($tacoInput.is(":checked")) {
-        $('#randomNight').append('<button onclick="tacoSearch();">Your Taco Options</button>');
-    }
-    if ($chickenInput.is(":checked")) {
-        $('#randomNight').append('<button onclick="chickenSearch();">Your Chicken Options</button>');
-    }
-    // Use modal to say nothing chosen?
 });
+// Given an object of the users choices, format them to put on the page
+function formatOptions(obj) {
+    var $div = $("<div>");
+    var $p = $("<p>");
+    var $favImg = $("<img>").attr("src", "assets/imgs/favorite.png").addClass("heart").addClass("img-fluid");
+    if (obj.beer) {
+        var b = $p.clone();
+        b.html(obj.beer);
+        $div.append($favImg).append(b);
+    }
+    return $div;
+}
 
+function changeHeart(targ) {
+    var src = $(targ).attr("src");
+    if (src == "assets/imgs/favorite.png") {
+        src = "assets/imgs/favorite-filled.png";
+    }
+    else {
+        src = "assets/imgs/favorite.png";
+    }
+    $(targ).attr("src", src);
+}
+
+//Handle clicking a favorite heart
+$(document).on("click", ".heart", function(event) {
+    var $targ = $(this);
+    changeHeart($targ[0]);
+});
 
 //movie api with results
 //most used words in movie title array
 function movieSearch() {
-    var searchWords = ["dog", "cat", "comedy", "romance", "black", "love", "blood", "big", "ghost", "private", "new", "king",
-        "girl", "american", "death", "pink", "doctor", "world", "sex", "children", "true", "Double", "Behind", "john",
-        'kill', 'amor', 'red', 'madame', 'hollywood', 'journey', 'hong', 'born', 'never', 'oh', 'house', 'inside',
-        'life', 'road', 'dark', 'time', 'heart', 'midnight', 'david', 'home', 'something', 'two', 'gun', 'seven', 'beyond',
-        'monster', 'christmas', 'last', 'deadly', 'max', 'escape', 'first', 'alice', 'boy', 'ten', 'mother', 'alien',
-        'hotel', 'father', 'mr', 'dirty', 'digital', 'bad', 'take', 'wild', 'three', 'american', 'cold', 'star', 'five',
-        'blue', 'family', 'tales', 'dragon', 'shin', 'city', 'dream', 'adventure', 'kiss', 'space', 'women', 'angel',
-        'how', 'what', 'why', 'when', 'the', 'summer', 'spy'];
+    var searchWords = ["dog", "cat", "comedy", "romance", "black", "love", "blood", "big", "ghost", "private", "new", "king", "girl", "american", "death", "pink", "doctor", "world", "sex", "children", "true", "Double", "Behind", "john", 'kill', 'amor', 'red', 'madame', 'hollywood', 'journey', 'hong', 'born', 'never', 'oh', 'house', 'inside', 'life', 'road', 'dark', 'time', 'heart', 'midnight', 'david', 'home', 'something', 'two', 'gun', 'seven', 'beyond', 'monster', 'christmas', 'last', 'deadly', 'max', 'escape', 'first', 'alice', 'boy', 'ten', 'mother', 'alien', 'hotel', 'father', 'mr', 'dirty', 'digital', 'bad', 'take', 'wild', 'three', 'american', 'cold', 'star', 'five', 'blue', 'family', 'tales', 'dragon', 'shin', 'city', 'dream', 'adventure', 'kiss', 'space', 'women', 'angel', 'how', 'what', 'why', 'when', 'the', 'summer', 'spy'];
 
     //randomly picking a word from the array
     var randomResult = searchWords[Math.floor(Math.random() * searchWords.length)];
@@ -200,7 +226,10 @@ function movieSearch() {
     $.get({
         url: "https://www.omdbapi.com/?s=" + randomResult + "&apikey=39a85d37&limit=3"
     }).then(function (response) {
-        $('#randomNight').prepend('<p><strong> Movie Suggestions: </strong><br>' + response.Search["2"].Title + '<br>' + response.Search["4"].Title + '<br>' + response.Search["8"].Title + '<br></p>');
+        console.log(response);
+        var rand = Math.floor(Math.random() * 10);
+        var movie = response.Search[rand];
+        moviesCallback(movie);
     });
 }
 
@@ -220,20 +249,77 @@ function bookSearch() {
     });
     $.get({
         url: url
-    }).done(function (result) {
-        $('#randomNight').prepend('<p><strong> Book Suggestions: </strong><br>' + result.results["4"].title + ' by ' + result.results["4"].author + '<br>' + result.results["6"].title + ' by ' + result.results["6"].author + '<br>' + result.results["8"].title + ' by ' + result.results["8"].author + '<br></p>');
+    }).then(function (result) {
+        var rand = Math.floor(Math.random() * 20);
+        var book = result.results[rand];
+        booksCallback(book);
     }).fail(function (err) {
         throw err;
     });
 }
+var book;
+function booksCallback(data) {
+    book = data;
+}
+var movie;
+function moviesCallback(data) {
+    movie = data;
+}
+// Go ahead and make the book ajax request when the checkbox is toggled
+$($novelInput).change(function () {
+    if ($(this).is(":checked")) {
+        bookSearch();
+    }
+    else {
+        book = null;
+    }
+});
+// Make movie API request when checkbox is clicked
+$($novelInput).change(function () {
+    if ($(this).is(":checked")) {
+        movieSearch();
+    }
+    else {
+        movie = null;
+    }
+});
+
+// Drizly delivery cities list: (Work in progress)
+var deliveryCities = {
+    arizona: ["Phoenix", "Tuscon", "Cave Creek", "Chandler", "Fountain Hills", "Gilbert", "Glendale", "Mesa", "Paradise Valley", "Scottsdale", "Tempe"],
+    California: ["Los Angeles", "Oakland", "Orange County", "San Diego", "San Francisco", "Stockton", "Vallejo"],
+    Colorado: ["Arvada", "Aurora", "Brighton", "Broomfield", "Castle Pines", "Castle Rock", "Centennial", "Cherry Hills Village", "Colorado Springs", "Commerce City", "Englewood", "Evans", "Edgewater", "Federal Heights", "Fort Carson", "Fountain", "Foxfield", "Glendale", "Golden", "Greenwood Village", "Highlands Ranch", "Lafayette", "Lakewood", "Littleton", "Lone Tree", "Longmont", "Louisville", "Morrison", "Niwot", "Northglenn", "Parker", "Sheridan", "Superior", "Thornton", "Timnath", "Westminster", "Wheat Ridge", "Windsor"],
+    Connecticut: [],
+    Florida: [],
+    Hawaii: [],
+    Illinois: [],
+    Indiana: [],
+    Kentucky: [],
+    Louisiana: [],
+    Maine: [],
+    Maryland: [],
+    Massachusetts: [],
+    Minnesota: [],
+    Missouri: [],
+    NewJersey: [],
+    NewYork: [],
+    NorthCarolina: [],
+    Ohio: [],
+    Oregon: [],
+    RhodeIsland: [],
+    Texas: [],
+    Tennessee: [],
+    Virginia: [],
+    Washington: [],
+    Wyoming: []
+};
 
 //Beer Search
 function beerSearch() {
-    var searchBeers = ['Samuel Adams Boston Lager', 'New Belgium Trippel', 'Sierra Nevada Pale Ale', 'Rogue Dead Guy Ale', 'Stone Porter', 'Guiness Draught', 'New Belgium Fat Tire', 'Yuenling Lager', 'Red Oak Amber', 'Angry Orchard Crisp Apple', 'Guiness Blonde', 'Yuengling Black and Tan', 'Dos Equis Amber', 'Stone Arrogant Bastard Ale', 'New Belgium Voodoo Ranger', 'Fat Tire Belgian White', 'New Belgium Pilsner',];
+    var searchBeers = ['Samuel Adams Boston Lager', 'New Belgium Trippel', 'Sierra Nevada Pale Ale', 'Rogue Dead Guy Ale', 'Stone Porter', 'Guiness Draught', 'New Belgium Fat Tire', 'Yuenling Lager', 'Red Oak Amber', 'Angry Orchard Crisp Apple', 'Guiness Blonde', 'Yuengling Black and Tan', 'Dos Equis Amber', 'Stone Arrogant Bastard Ale', 'New Belgium Voodoo Ranger', 'Fat Tire Belgian White', 'New Belgium Pilsner'];
 
     var randomBeerResult = searchBeers[Math.floor(Math.random() * searchBeers.length)];
-
-    $('#randomNight').prepend('<h6> Beer: </h6> <p>' + randomBeerResult + '</p>');
+    return randomBeerResult;
 }
 
 //WIne Randomizer
@@ -247,8 +333,7 @@ function wineSearch() {
         'Marques De Caceres Crianza Rioja', 'Charles Smith WIne Eve Chardonnay'];
 
     var randomWineResult = searchWines[Math.floor(Math.random() * searchWines.length)];
-
-    $('#randomNight').prepend('<h6> Wine: </h6> <p>' + randomWineResult + '</p>');
+    return randomWineResult;
 }
 
 //food links

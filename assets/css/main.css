@@ -1,3 +1,14 @@
+/* Styling items in 'For your night in' area */
+
+.heart:hover {
+    cursor: pointer;
+}
+
+#randomNight div p, .heart {
+    float: left;
+    padding-right: 5px;
+}
+
 /* Authentication bar + sign-in / sign-up modals */
 
 #authbar {
