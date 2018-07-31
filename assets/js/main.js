@@ -70,7 +70,6 @@ function getLocationByZipCity(param, callback) {
     $.get({
         url: "https://maps.googleapis.com/maps/api/geocode/json?address={" + param + "}"
     }).then(function (data) {
-        console.log(data);
         if (data.status === "ZERO_RESULTS") {
             // Ephemeral modal saying no results, try again.
             showModal("general_message", "Location not found, please try again.");
@@ -160,28 +159,31 @@ $('#randomizer').on('click', function () {
         }
         if (book != null) {
             options.book = book;
+            bookSearch();
         }
         if (movie != null) {
             options.movie = movie;
+            movieSearch();
         }
         // Put the options on the page.
         var formattedOptions = formatOptions(options);
+        formattedOptions.prepend("<hr>");
         $("#randomNight").prepend(formattedOptions);
 
         if ($pizzaInput.is(":checked")) {
-            $('#randomNight').append('<button onclick="pizzaSearch();">Your Pizza Options</button>');
+            showModal("general_message", "pizza");
         }
         if ($chineseInput.is(":checked")) {
-            $('#randomNight').append('<button onclick="ChineseSearch();">Your Chinese Options</button>');
+            showModal("general_message", "chinese");
         }
         if ($burgerInput.is(":checked")) {
-            $('#randomNight').append('<button onclick="burgerSearch();">Your Burger Options</button>');
+            showModal("general_message", "burger");
         }
         if ($tacoInput.is(":checked")) {
-            $('#randomNight').append('<button onclick="tacoSearch();">Your Taco Options</button>');
+            showModal("general_message", "taco");
         }
         if ($chickenInput.is(":checked")) {
-            $('#randomNight').append('<button onclick="chickenSearch();">Your Chicken Options</button>');
+            showModal("general_message", "chicken");
         }
     }
 });
@@ -193,7 +195,27 @@ function formatOptions(obj) {
     if (obj.beer) {
         var b = $p.clone();
         b.html(obj.beer);
-        $div.append($favImg).append(b);
+        $div.append($favImg.clone()).append(b).append("<br><br>");
+    }
+    if (obj.wine) {
+        var w = $p.clone();
+        w.html(obj.wine);
+        $div.append($favImg.clone()).append(w).append("<br><br>");
+    }
+    if (obj.book) {
+        var tit = obj.book.title;
+        var auth = obj.book.author;
+        var bk = $p.clone();
+        bk.html("<strong>" + tit + "</strong>" + " by " + auth);
+        var review = obj.book.reviews[0];
+        console.log(review);
+        if (review.book_review_link) {
+            bk.append(" - <a href='" + review.book_review_link + "' target='_blank'>Review</a>");
+        }
+        else if (review.sunday_review_link) {
+            bk.append(" - <a href='" + review.sunday_review_link + "' target='_blank'>Review</a>");
+        }
+        $div.append($favImg.clone()).append(bk).addClass("book").append("<br><br>");
     }
     return $div;
 }
@@ -210,7 +232,7 @@ function changeHeart(targ) {
 }
 
 //Handle clicking a favorite heart
-$(document).on("click", ".heart", function(event) {
+$(document).on("click", ".heart", function (event) {
     var $targ = $(this);
     changeHeart($targ[0]);
 });
@@ -226,10 +248,14 @@ function movieSearch() {
     $.get({
         url: "https://www.omdbapi.com/?s=" + randomResult + "&apikey=39a85d37&limit=3"
     }).then(function (response) {
-        console.log(response);
-        var rand = Math.floor(Math.random() * 10);
-        var movie = response.Search[rand];
-        moviesCallback(movie);
+        if (response.Response == "False") {
+            movieSearch();
+        }
+        else {
+            var rand = Math.floor(Math.random() * 10);
+            var movie = response.Search[rand];
+            moviesCallback(movie);
+        }
     });
 }
 

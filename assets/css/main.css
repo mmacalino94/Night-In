@@ -1,5 +1,9 @@
 /* Styling items in 'For your night in' area */
 
+.book {
+    padding-bottom: 10px;
+}
+
 .heart:hover {
     cursor: pointer;
 }
@@ -7,6 +11,10 @@
 #randomNight div p, .heart {
     float: left;
     padding-right: 5px;
+}
+
+#randomNight a {
+    color: #003268;
 }
 
 /* Authentication bar + sign-in / sign-up modals */
