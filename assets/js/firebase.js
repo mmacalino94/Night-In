@@ -62,7 +62,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         console.log(window.user);
         removeSignInLink();
         addLogoutLink();
-        addProfilePic(window.userproviderData[0].photoURL);
+        addProfilePic(window.user.providerData[0].photoURL);
     }
     else {
         console.log("log in please...");
