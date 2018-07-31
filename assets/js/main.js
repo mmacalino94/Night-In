@@ -2,6 +2,8 @@ var map; // Holds API map object
 
 // Initialize the map with the users coordinates
 function initMap(coords) {
+    localStorage.setItem("lat", coords.lat);
+    localStorage.setItem('lng', coords.long);
     map = new google.maps.Map(document.getElementById('map-area'), {
         center: {
             lat: coords.lat,
@@ -171,6 +173,11 @@ $('#randomizer').on('click', function () {
         $("#randomNight").prepend(formattedOptions);
 
         if ($pizzaInput.is(":checked")) {
+            $.get({
+                url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?input=pizza&inputtype=textquery&fields=name,formatted_address&locationbias=circle:2000@' + localStorage.getItem('lat') + "," + localStorage.getItem("lng") + "&key=AIzaSyBNoFJD2L6u-GjLmNt9EcsxjUByUYUxbVw"
+            }).then(function (response) {
+                console.log(response);
+            });
             showModal("general_message", "pizza");
         }
         if ($chineseInput.is(":checked")) {
