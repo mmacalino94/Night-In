@@ -39,7 +39,7 @@ var uiConfig = {
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: 'krab7191.github.io/Night-In',
+    signInSuccessUrl: 'https://krab7191.github.io/Night-In/',
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     ]
