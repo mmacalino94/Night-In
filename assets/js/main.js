@@ -2,7 +2,6 @@ var map; // Holds API map object
 
 // Initialize the map with the users coordinates
 function initMap(coords) {
-    console.log(coords);
     map = new google.maps.Map(document.getElementById('map-area'), {
         center: {
             lat: coords.lat,
@@ -48,12 +47,10 @@ function formatJsonObj(obj) {
         lat: lat,
         long: lng
     };
-    console.log(latLngObj);
     initMap(latLngObj);
 }
 // Show an overlay over the map area prompting user to enter location manually
 function handleLocationError(message) {
-    console.log(message);
     var div = $("<div>").attr("id", "location-error");
     var mess = $("<p>");
     mess.html(message);
@@ -73,7 +70,6 @@ function getLocationByZipCity(param, callback) {
     $.get({
         url: "https://maps.googleapis.com/maps/api/geocode/json?address={" + param + "}"
     }).then(function (data) {
-        console.log(data.status);
         if (data.status === "ZERO_RESULTS") {
             // Ephemeral modal saying no results, try again.
             showModal("general_message", "Location not found, please try again.");
@@ -122,7 +118,6 @@ $("#food-input").keydown(function (event) {
         event.preventDefault();
         var food = $("#food-input").val();
         // Handle food mapping function here...
-        console.log(food);
         return false;
     }
 });
@@ -154,7 +149,6 @@ $('#randomizer').on('click', function () {
     }
     if ($pizzaInput.is(":checked")) {
         $('#randomNight').append('<button onclick="pizzaSearch();">Your Pizza Options</button>');
-        console.log('check');
     }
     if ($chineseInput.is(":checked")) {
         $('#randomNight').append('<button onclick="ChineseSearch();">Your Chinese Options</button>');
@@ -189,10 +183,6 @@ function movieSearch() {
     $.get({
         url: "https://www.omdbapi.com/?s=" + randomResult + "&apikey=39a85d37&limit=3"
     }).then(function (response) {
-        console.log(response);
-        console.log(response.Search["2"].Title);
-        console.log(response.Search["4"].Title);
-        console.log(response.Search["6"].Title);
         $('#randomNight').prepend('<p><strong> Movie Suggestions: </strong><br>' + response.Search["2"].Title + '<br>' + response.Search["4"].Title + '<br>' + response.Search["8"].Title + '<br></p>');
     });
 }
@@ -214,13 +204,6 @@ function bookSearch() {
     $.get({
         url: url
     }).done(function (result) {
-        console.log(result);
-        console.log(result.results["4"].title);
-        console.log(result.results["4"].author);
-        console.log(result.results["6"].title);
-        console.log(result.results["6"].author);
-        console.log(result.results["8"].title);
-        console.log(result.results["8"].author);
         $('#randomNight').prepend('<p><strong> Book Suggestions: </strong><br>' + result.results["4"].title + ' by ' + result.results["4"].author + '<br>' + result.results["6"].title + ' by ' + result.results["6"].author + '<br>' + result.results["8"].title + ' by ' + result.results["8"].author + '<br></p>');
     }).fail(function (err) {
         throw err;
@@ -232,8 +215,6 @@ function beerSearch() {
     var searchBeers = ['Samuel Adams Boston Lager', 'New Belgium Trippel', 'Sierra Nevada Pale Ale', 'Rogue Dead Guy Ale', 'Stone Porter', 'Guiness Draught', 'New Belgium Fat Tire', 'Yuenling Lager', 'Red Oak Amber', 'Angry Orchard Crisp Apple', 'Guiness Blonde', 'Yuengling Black and Tan', 'Dos Equis Amber', 'Stone Arrogant Bastard Ale', 'New Belgium Voodoo Ranger', 'Fat Tire Belgian White', 'New Belgium Pilsner',];
 
     var randomBeerResult = searchBeers[Math.floor(Math.random() * searchBeers.length)];
-
-    console.log(randomBeerResult);
 
     $('#randomNight').prepend('<h6> Beer: </h6> <p>' + randomBeerResult + '</p>');
 }
@@ -249,8 +230,6 @@ function wineSearch() {
         'Marques De Caceres Crianza Rioja', 'Charles Smith WIne Eve Chardonnay'];
 
     var randomWineResult = searchWines[Math.floor(Math.random() * searchWines.length)];
-
-    console.log(randomWineResult);
 
     $('#randomNight').prepend('<h6> Wine: </h6> <p>' + randomWineResult + '</p>');
 }
