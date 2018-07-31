@@ -105,9 +105,13 @@ function hideModal(target, time) {
     }, wait);
 }
 
-// On page load show modal
+// On page load show modal if first time user
+
 $(function () {
-    $("#intro").modal("show");
+    if (!localStorage.getItem('visited')) {
+        localStorage.setItem("visited", true);
+        $("#intro").modal("show");
+    }
 });
 
 // End MODAL functions
