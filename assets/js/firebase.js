@@ -60,6 +60,9 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (window.user) {
         console.log("I'm logged in!!");
         console.log(window.user);
+        removeSignInLink();
+        addLogoutLink();
+        addProfilePic(window.user);
     }
     else {
         console.log("log in please...");
@@ -82,7 +85,7 @@ function addProfilePic(userData) {
 }
 
 $("#login").on("click", function () {
-    $("#authentication-container").toggle();
+    $("#authentication-container").modal("show");
 });
 $(document).on("click", "#logout", function () {
     firebase.auth().signOut().then(function() {

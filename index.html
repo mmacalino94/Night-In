@@ -168,8 +168,8 @@
                 <div class="modal-body">
                     <p>Welcome to NightIn! Please let us make your NightIn plans!</p>
                     <p>
-                        Let us remove the pressure of deciding what to do on your night in.
-                        Select what you'd like and click Randomize to get exciting new suggestions of what to do, local food deliveries and more.
+                        Let us remove the pressure of deciding what to do on your night in. Select what you'd like and click Randomize to get exciting
+                        new suggestions of what to do, local food deliveries and more.
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -178,10 +178,18 @@
             </div>
         </div>
     </div>
-
-    <div id="authentication-container">
-        <div id="firebaseui-auth-container"></div>
-        <div id="loader">Loading...</div>
+    // Authbar modal
+    <div id="authentication-container" class="modal fade" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" id="firebaseui-auth-container">
+                    <div id="loader">Loading...</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
     // Generla purpose modal, add content as needed programmatically
     <div class="modal fade" tabindex="-1" role="dialog" id="general_message">
