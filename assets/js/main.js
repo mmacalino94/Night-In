@@ -9,7 +9,7 @@ function initMap(coords) {
             lat: coords.lat,
             lng: coords.long
         },
-        zoom: 10
+        zoom: 13
     });
 }
 
@@ -139,6 +139,35 @@ var $burgerInput = $('#burger-checkbox');
 var $tacoInput = $('#taco-checkbox');
 var $chickenInput = $('#chicken-checkbox');
 
+function makeMarkers(results, status) {
+    console.log(results);
+    console.log(status);
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            var place = results[i];
+            console.log(place);
+            var marker = new google.maps.Marker({
+                map: map,
+                place: {
+                    placeId: place.place_id,
+                    location: place.geometry.location
+                }
+            });
+        }
+    }
+}
+function placesRequest(keyword) {
+    var loc = new google.maps.LatLng(localStorage.getItem("lat"), localStorage.getItem("lng"));
+    console.log(loc);
+    var request = {
+        location: loc,
+        radius: 5000,
+        keyword: keyword
+    };
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, makeMarkers);
+}
+
 $('#randomizer').on('click', function () {
 
     // Use modal to say nothing chosen if checkboxes all unchecked
@@ -173,24 +202,19 @@ $('#randomizer').on('click', function () {
         $("#randomNight").prepend(formattedOptions);
 
         if ($pizzaInput.is(":checked")) {
-            $.get({
-                url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?input=pizza&inputtype=textquery&fields=name,formatted_address&locationbias=circle:2000@' + localStorage.getItem('lat') + "," + localStorage.getItem("lng") + "&key=AIzaSyBNoFJD2L6u-GjLmNt9EcsxjUByUYUxbVw"
-            }).then(function (response) {
-                console.log(response);
-            });
-            showModal("general_message", "pizza");
+            placesRequest("pizza");
         }
         if ($chineseInput.is(":checked")) {
-            showModal("general_message", "chinese");
+            placesRequest("chinese");
         }
         if ($burgerInput.is(":checked")) {
-            showModal("general_message", "burger");
+            placesRequest("burger");
         }
         if ($tacoInput.is(":checked")) {
-            showModal("general_message", "taco");
+            placesRequest("taco");
         }
         if ($chickenInput.is(":checked")) {
-            showModal("general_message", "chicken");
+            placesRequest("chicken");
         }
     }
 });
