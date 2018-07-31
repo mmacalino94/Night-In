@@ -1,3 +1,5 @@
+// jshint esversion:6
+// (Squelch jshint problems about es6 syntax)
 
 // Initialize Firebase
 var config = {
@@ -5,26 +7,25 @@ var config = {
     authDomain: "a-night-in.firebaseapp.com",
     databaseURL: "https://a-night-in.firebaseio.com",
     projectId: "a-night-in",
-    storageBucket: "",
     messagingSenderId: "115173215878"
 };
 firebase.initializeApp(config);
 var db = firebase.database();
-console.log(db);
 
-
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// Initialize authentication instance
+const fbAuth = firebase.auth();
+var ui = new firebaseui.auth.AuthUI(fbAuth);
 
 var uiConfig = {
     callbacks: {
         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
             console.log(authResult);
+            console.log(redirectUrl);
             $("#authentication-container").toggle();
             removeSignInLink();
             addLogoutLink();
             addProfilePic(authResult.additionalUserInfo.profile.picture);
             // db.ref().push("Gloop");
-
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
@@ -38,20 +39,17 @@ var uiConfig = {
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: 'localhost:8000',
+    signInSuccessUrl: 'krab7191.github.io/Night-In',
     signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        // firebase.auth.PhoneAuthProvider.PROVIDER_ID
-    ],
+    ]
     // Terms of service url.
-    tosUrl: 'https://krab7191.github.io/Night-In/',
+    // tosUrl: 'https://krab7191.github.io/Night-In/',
     // Privacy policy url.
-    privacyPolicyUrl: 'https://krab7191.github.io/Night-In/'
+    // privacyPolicyUrl: 'https://krab7191.github.io/Night-In/'
 };
 
+// Put the auth container in the modal
 ui.start('#firebaseui-auth-container', uiConfig);
 
 // Make only signed in users save stuff
@@ -93,7 +91,7 @@ $(document).on("click", "#logout", function () {
         $("#logout").remove();
         var $login = $("<p>").attr('id', "login").html("Log In / Sign Up");
         $("#authbar").append($login);
-        $("#title").css("margin-top", "20px");
+        $("#title").css("margin-top", "35px");
     }).catch(function (err) {
             // Handle errors
             console.log("Error signing out");
