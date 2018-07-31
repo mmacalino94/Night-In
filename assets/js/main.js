@@ -127,6 +127,7 @@ $("#food-input").keydown(function (event) {
 });
 
 //Randomize Button Function
+
 var $beerInput = $('#beer-checkbox');
 var $wineInput = $('#wine-checkbox');
 var $novelInput = $('#novel-checkbox');
@@ -141,16 +142,28 @@ $('#randomizer').on('click', function () {
     //var $food = $("#food-input").val();
     if ($wineInput.is(":checked")) {
         wineSearch();
-    }
-    if ($beerInput.is(":checked")) {
+    }if ($('#customCheck1').is(":checked") && $('#customCheck2').is(":checked")){
         beerSearch();
+        wineSearch();
+    }else if ($('#customCheck1').is(":checked") === false && $('#customCheck2').is(":checked") === false) {
+        $('#randomNight').append('<p> Not Drinking Tonight? </p>');  
     }
-    if ($novelInput.is(":checked")) {
+
+    if($('#customCheck3').is(":checked")){
         bookSearch();
-    }
-    if ($movieInput.is(":checked")) {
+    }if ($('#customCheck4').is(":checked")) {
         movieSearch();
+    }if ($('#customCheck3').is(":checked") && $('#customCheck4').is(":checked")){
+        bookSearch();
+        movieSearch();
+    }else if ($('#customCheck3').is(":checked") === false && $('#customCheck4').is(":checked") === false) {
+        $('#randomNight').append('<p> No Entertainment Tonight? </p>');  
     }
+
+});
+
+// Use modal to say nothing chosen?
+
     if ($pizzaInput.is(":checked")) {
         $('#randomNight').append('<button onclick="pizzaSearch();">Your Pizza Options</button>');
     }
@@ -168,6 +181,7 @@ $('#randomizer').on('click', function () {
     }
     // Use modal to say nothing chosen?
 });
+
 
 //movie api with results
 //most used words in movie title array
