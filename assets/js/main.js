@@ -198,7 +198,9 @@ $('#randomizer').on('click', function () {
         }
         // Put the options on the page.
         var formattedOptions = formatOptions(options);
-        formattedOptions.prepend("<hr>");
+        if (($beerInput.is(":checked")) && ($wineInput.is(":checked")) && (book != null) && (movie != null)) {
+            formattedOptions.prepend("<hr>");
+        }
         $("#randomNight").prepend(formattedOptions);
 
         if ($pizzaInput.is(":checked")) {
