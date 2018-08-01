@@ -228,12 +228,12 @@ function formatOptions(obj) {
     if (obj.beer) {
         var b = $p.clone();
         b.html(obj.beer);
-        $div.append($favImg.clone()).append(b).append("<br><br>");
+        $div.append($favImg.clone().attr("data-type", "drink")).append(b).append("<br><br>");
     }
     if (obj.wine) {
         var w = $p.clone();
         w.html(obj.wine);
-        $div.append($favImg.clone()).append(w).append("<br><br>");
+        $div.append($favImg.clone().attr("data-type", "drink")).append(w).append("<br><br>");
     }
     if (obj.book) {
         var tit = obj.book.title;
@@ -248,7 +248,7 @@ function formatOptions(obj) {
         else if (review.sunday_review_link) {
             bk.append(" - <a href='" + review.sunday_review_link + "' target='_blank'>Review</a>");
         }
-        $div.append($favImg.clone()).append(bk).addClass("book").append("<br><br>");
+        $div.append($favImg.clone().attr("data-type", "book")).append(bk).addClass("book").append("<br><br>");
     }
     if (obj.movie) {
         console.log(obj.movie);
@@ -257,7 +257,7 @@ function formatOptions(obj) {
         $link.attr("href", "https://www.imdb.com/title/" + obj.movie.imdbID);
         $link.attr("target", "_blank");
         var $img = $("<img>").attr("src", obj.movie.Poster).addClass("movie-poster");
-        $div.append($favImg.clone()).append($link).append($img).append("<br><br>");
+        $div.append($favImg.clone().attr("data-type", "movie")).append($link).append($img).append("<br><br>");
     }
     return $div;
 }
