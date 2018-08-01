@@ -384,6 +384,10 @@ var deliveryCities = {
     Wyoming: []
 };
 
+// TO DO: 
+// Beer Mapping API reference: https://beermapping.com/api/reference/
+// Beer mapping API key: f6ba04d98b61ffc6ba44814460b2 (Missing first and last 2 chars for security)
+
 //Beer Search
 function beerSearch() {
     var searchBeers = ['Samuel Adams Boston Lager', 'New Belgium Trippel', 'Sierra Nevada Pale Ale', 'Rogue Dead Guy Ale', 'Stone Porter', 'Guiness Draught', 'New Belgium Fat Tire', 'Yuenling Lager', 'Red Oak Amber', 'Angry Orchard Crisp Apple', 'Guiness Blonde', 'Yuengling Black and Tan', 'Dos Equis Amber', 'Stone Arrogant Bastard Ale', 'New Belgium Voodoo Ranger', 'Fat Tire Belgian White', 'New Belgium Pilsner'];
